@@ -5,8 +5,7 @@ import Collection from "./Collection";
 const categories = [
   { name: "Все" },
   { name: "Сочи" },
-  { name: "Подъезды" },
-  { name: "Концерты" },
+  { name: "Обыденные" },
   { name: "Города" },
 ];
 
@@ -16,13 +15,12 @@ function App() {
   const [categoryId, setCategoryId] = useState(0);
   const [isLoading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
-
   useEffect(() => {
     setLoading(true);
 
     const category = categoryId ? `category=${categoryId}` : ``;
 
-    fetch(`https://6727414c302d03037e70206a.mockapi.io/photos?page=${page}&limit=3&${category}`)
+    fetch(`https://6727414c302d03037e70206a.mockapi.io/photos?page=${page}&limit=10&${category}`)
       .then((res) => res.json())
       .then((json) => {
         setCollections(json);
@@ -38,7 +36,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Моя коллекция фотографий</h1>
+      <h1>Моя любимая женщина</h1>
       <div className="top">
         <ul className="tags">
           {categories.map((obj, index) => (
@@ -72,7 +70,7 @@ function App() {
         )}
       </div>
       <ul className="pagination">
-        {[...Array(5)].map((_, i) => (
+        {[...Array(4)].map((_, i) => (
           <li
             key={i}
             onClick={() => setPage(i + 1)}
